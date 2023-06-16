@@ -1,8 +1,9 @@
 import React, { useContext, useEffect } from "react";
 import UserContext from "../context/UserContext";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, Navigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from 'axios';
+import AllTasks from "../components/AllTasks";
 
 function Profile() {
     const userContext = useContext(UserContext);
@@ -12,7 +13,7 @@ function Profile() {
         const accessToken = Cookies.get("access_token");
         console.log(accessToken)
 
-        fetch("https://fmb.eraasoft.com/api/logout/", {
+        fetch("https://fmb.eraasoft.com/api/logout", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -36,40 +37,6 @@ function Profile() {
             .catch((error) => console.log(error));
     }
 
-    const getTasksFromAPI = () => {
-        const accessToken = Cookies.get('access_token');
-        console.log(accessToken);
-
-        axios
-            .get(`https://fmb.eraasoft.com/api/tasks?token=${accessToken}`, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json',
-                },
-            })
-            .then((response) => {
-                console.log('Tasks:', response.data);
-            })
-            .catch((error) => console.log(error));
-    };
-
-    const getSingleTaskFromAPI = () => {
-        const accessToken = Cookies.get('access_token');
-        console.log(accessToken);
-
-        axios
-            .get(`https://fmb.eraasoft.com/api/tasks/116?token=${accessToken}`, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json',
-                },
-            })
-            .then((response) => {
-                console.log('Tasks:', response.data);
-            })
-            .catch((error) => console.log(error));
-    };
-
     const storeTask = () => {
         const accessToken = Cookies.get('access_token');
         console.log(accessToken);
@@ -91,17 +58,9 @@ function Profile() {
             .catch((error) => console.log(error));
     };
 
-    useEffect(() => {
-        getTasksFromAPI()
-    }, [])
-
     if (!Cookies.get('access_token') || !Cookies.get('user')) {
-        return (
-            <>
-                <p>login first</p>
-                <Link to="/login">Login</Link>
-            </>
-        )
+        // return navigate("/login");
+        return <Navigate to="/login" replace />;
     }
 
     return (
@@ -109,6 +68,10 @@ function Profile() {
             <h1>Welcome, {userContext.user.name}!</h1>
             <p>Your email is: {userContext.user.email}</p>
             <button onClick={() => logout()}>Logout</button>
+            <Link to="/settings">Settings</Link>
+            <div>
+                <AllTasks />
+            </div>
         </div>
     );
 }

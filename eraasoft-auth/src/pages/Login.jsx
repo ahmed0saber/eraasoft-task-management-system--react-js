@@ -83,7 +83,7 @@ function Login() {
                 </label>
                 <br />
                 <button type="submit">Login</button>
-                <Link to="/">Don't have account? Register</Link>
+                <Link to="/register">Don't have account? Register</Link>
             </form>
         </div>
     );

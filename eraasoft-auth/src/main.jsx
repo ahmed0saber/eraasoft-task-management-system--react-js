@@ -7,13 +7,23 @@ import {
 } from "react-router-dom";
 import Register from './pages/Register';
 import UserContext from './context/UserContext';
-import Profile from './pages/Profiles';
+import Profile from './pages/Profile';
 import Cookies from "js-cookie";
 import Login from './pages/Login';
+import Home from './pages/Home';
+import Settings from './pages/Settings';
 
 const router = createBrowserRouter([
   {
     path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/login",
+    element: <Login />,
+  },
+  {
+    path: "/register",
     element: <Register />,
   },
   {
@@ -21,8 +31,8 @@ const router = createBrowserRouter([
     element: <Profile />,
   },
   {
-    path: "/login",
-    element: <Login />,
+    path: "/settings",
+    element: <Settings />,
   },
 ]);
 
