@@ -12,7 +12,6 @@ export default function AllTasks() {
 
     const getTasksFromAPI = (url = "https://fmb.eraasoft.com/api/tasks?") => {
         const accessToken = Cookies.get('access_token');
-        console.log(accessToken);
 
         axios
             .get(`${url}token=${accessToken}`, {
@@ -22,12 +21,31 @@ export default function AllTasks() {
                 },
             })
             .then((response) => {
-                console.log('Tasks:', response.data.data);
                 setTasks(response.data.data.data);
                 setNextPageUrl(response.data.data.next_page_url);
                 setPrevPageUrl(response.data.data.prev_page_url);
                 setCurrentPage(response.data.data.current_page);
                 setLastPage(response.data.data.last_page);
+            })
+            .catch((error) => console.log(error));
+    };
+
+    const storeTask = () => {
+        const accessToken = Cookies.get('access_token');
+
+        axios
+            .post(`https://fmb.eraasoft.com/api/tasks?token=${accessToken}`, {
+                title: "first tasks",
+                description: "hi there"
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                }
+            })
+            .then((response) => {
+                console.log(response);
             })
             .catch((error) => console.log(error));
     };

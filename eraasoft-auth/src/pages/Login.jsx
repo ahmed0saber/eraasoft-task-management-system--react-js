@@ -1,7 +1,8 @@
 import React, { useState, useContext } from "react";
 import Cookies from "js-cookie";
 import UserContext from "../context/UserContext";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, Navigate } from "react-router-dom";
+import axios from 'axios';
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -10,43 +11,34 @@ function Login() {
     const navigate = useNavigate();
 
     const handleLogin = () => {
-        fetch("https://fmb.eraasoft.com/api/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-            },
-            body: JSON.stringify({
+        axios
+            .post("https://fmb.eraasoft.com/api/login", {
                 email: email,
                 password: password,
-            }),
-        })
-            .then((response) => {
-                console.log(response)
-                if (!response.ok) {
-                    alert("Registration failed");
-                    throw new Error("Registration failed");
-                }
-                return response.json();
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    Accept: 'application/json',
+                },
             })
-            .then((data) => {
-                console.log("Registration successful:", data);
-
-                // Store the access token and user info in a cookie and context
-                const expiresAt = Date.now() + data.token.expires_in * 60 * 1000;
-                Cookies.set("access_token", data.token.access_token, {
+            .then((response) => {
+                const currentUser = {
+                    name: response.data.user.name,
+                    email: response.data.user.email
+                }
+                const expiresAt = Date.now() + response.data.token.expires_in * 60 * 1000;
+                Cookies.set("access_token", response.data.token.access_token, {
                     expires: expiresAt,
-                    secure: true, // set to true if using HTTPS
-                    sameSite: "strict", // set to 'strict' to prevent cross-site request forgery
+                    secure: true,
+                    sameSite: "strict",
                 });
-                Cookies.set("user", JSON.stringify({ name: data.user.name, email: data.user.email }), {
+                Cookies.set("user", JSON.stringify(currentUser), {
                     expires: expiresAt,
-                    secure: true, // set to true if using HTTPS
-                    sameSite: "strict", // set to 'strict' to prevent cross-site request forgery
+                    secure: true,
+                    sameSite: "strict",
                 });
-                userContext.setUser({ name: data.user.name, email: data.user.email });
+                userContext.setUser(currentUser);
 
-                // Redirect to the profile page
                 navigate("/profile");
             })
             .catch((error) => console.log(error));
@@ -58,7 +50,7 @@ function Login() {
     };
 
     if (Cookies.get('access_token') && Cookies.get('user')) {
-        navigate("/profile");
+        return <Navigate to="/profile" replace />;
     }
 
     return (

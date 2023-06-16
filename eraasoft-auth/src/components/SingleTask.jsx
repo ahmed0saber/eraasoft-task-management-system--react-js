@@ -9,7 +9,6 @@ export default function SingleTask({ task, getTasksFromAPI }) {
 
     const deleteTask = (id) => {
         const accessToken = Cookies.get('access_token');
-        console.log(accessToken);
 
         axios
             .delete(`https://fmb.eraasoft.com/api/tasks/${id}?token=${accessToken}`,
@@ -19,8 +18,7 @@ export default function SingleTask({ task, getTasksFromAPI }) {
                     Accept: 'application/json',
                 }
             })
-            .then((response) => {
-                console.log('Tasks:', response.data);
+            .then(() => {
                 getTasksFromAPI()
             })
             .catch((error) => console.log(error));
@@ -32,7 +30,6 @@ export default function SingleTask({ task, getTasksFromAPI }) {
 
     const confirmEdit = (id) => {
         const accessToken = Cookies.get('access_token');
-        console.log(accessToken);
 
         axios
             .put(`https://fmb.eraasoft.com/api/tasks/${id}?token=${accessToken}`, {
@@ -46,8 +43,7 @@ export default function SingleTask({ task, getTasksFromAPI }) {
                     Accept: 'application/json',
                 }
             })
-            .then((response) => {
-                console.log('Tasks:', response.data);
+            .then(() => {
                 setIsBeingEdited(false)
                 getTasksFromAPI()
             })
