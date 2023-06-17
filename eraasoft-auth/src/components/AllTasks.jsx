@@ -2,6 +2,7 @@ import React, { useState, useEffect, Fragment } from 'react'
 import SingleTask from './SingleTask';
 import Cookies from "js-cookie";
 import axios from 'axios';
+import AddNewTask from './AddNewTask';
 
 export default function AllTasks() {
     const [tasks, setTasks] = useState([]);
@@ -30,26 +31,6 @@ export default function AllTasks() {
             .catch((error) => console.log(error));
     };
 
-    const storeTask = () => {
-        const accessToken = Cookies.get('access_token');
-
-        axios
-            .post(`https://fmb.eraasoft.com/api/tasks?token=${accessToken}`, {
-                title: "first tasks",
-                description: "hi there"
-            },
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json',
-                }
-            })
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => console.log(error));
-    };
-
     useEffect(() => {
         getTasksFromAPI()
     }, [])
@@ -57,6 +38,7 @@ export default function AllTasks() {
     return (
         <div>
             <h3>All Tasks</h3>
+            <AddNewTask getTasksFromAPI={getTasksFromAPI}/>
             <div>
                 {tasks.map(task => {
                     return (
@@ -67,9 +49,9 @@ export default function AllTasks() {
                 })}
             </div>
             <div>
-                {currentPage > 1 ? <button onClick={() => getTasksFromAPI(prevPageUrl + "&")}>{currentPage - 1}</button> : <button>.</button>}
+                {currentPage > 1 ? <button onClick={() => getTasksFromAPI(prevPageUrl + "&")}>{currentPage - 1}</button> : <span>.</span>}
                 <span>{currentPage}</span>
-                {currentPage < lastPage ? <button onClick={() => getTasksFromAPI(nextPageUrl + "&")}>{currentPage + 1}</button> : <button>.</button>}
+                {currentPage < lastPage ? <button onClick={() => getTasksFromAPI(nextPageUrl + "&")}>{currentPage + 1}</button> : <span>.</span>}
             </div>
         </div>
     )
