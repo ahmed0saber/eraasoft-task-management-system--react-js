@@ -69,3 +69,21 @@ footer {
   background-color: #323232;
   text-align: center;
 }
+
+.error-page {
+  padding: 12px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: auto;
+}
+
+.error-page h1 {
+  color: #323232;
+  font-size: 24px;
+}
+
+.error-page a {
+  color: #007BFF;
+}
