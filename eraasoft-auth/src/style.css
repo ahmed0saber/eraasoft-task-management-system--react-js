@@ -87,3 +87,31 @@ footer {
 .error-page a {
   color: #007BFF;
 }
+
+.home-page {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: auto;
+}
+
+.home-page h1 {
+  color: #323232;
+  font-size: 24px;
+}
+
+.home-page p {
+  color: #323232;
+  max-width: 600px;
+}
+
+.home-page .btns {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.home-page a {
+  color: #007BFF;
+}
