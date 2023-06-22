@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import UserContext from "../context/UserContext";
-import { useNavigate, Link, Navigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from 'axios';
 import AllTasks from "../components/AllTasks";
@@ -38,7 +38,6 @@ function Profile() {
             <h1>Welcome, {userContext.user.name}!</h1>
             <p>Your email is: {userContext.user.email}</p>
             <button onClick={() => logout()}>Logout</button>
-            <Link to="/settings">Settings</Link>
             <AllTasks />
         </div>
     );
