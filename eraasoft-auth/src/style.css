@@ -115,3 +115,60 @@ footer {
 .home-page a {
   color: #007BFF;
 }
+
+.auth-page {
+  padding: 12px;
+  width: 100%;
+}
+
+.auth-page form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  box-shadow: 0px 0px 2px 2px #32323232;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.auth-page .input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.auth-page .input-group label {
+  font-size: 14px;
+  color: #323232;
+}
+
+.auth-page .input-group input {
+  font-size: 15px;
+  color: #323232;
+  padding: 8px;
+  border: 1px solid #32323232;
+}
+
+.auth-page .input-group input:focus {
+  outline: 1px solid #323232;
+}
+
+.auth-page button {
+  padding: 8px;
+  background-color: #007BFF;
+  color: #FBFBFB;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.auth-page a {
+  color: #323232;
+  text-decoration: none;
+  font-size: 14px;
+}

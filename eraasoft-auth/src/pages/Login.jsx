@@ -54,26 +54,30 @@ function Login() {
     }
 
     return (
-        <div>
+        <div className="auth-page">
             <form onSubmit={handleSubmit}>
-                <label>
-                    Email:
+                <div className="input-group">
+                    <label htmlFor="email">Email:</label>
                     <input
                         type="email"
+                        id="email"
+                        placeholder="Enter your email address"
                         value={email}
                         onChange={(event) => setEmail(event.target.value)}
+                        required
                     />
-                </label>
-                <br />
-                <label>
-                    Password:
+                </div>
+                <div className="input-group">
+                    <label htmlFor="password">Password:</label>
                     <input
                         type="password"
+                        id="password"
+                        placeholder="Enter your password"
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
+                        required
                     />
-                </label>
-                <br />
+                </div>
                 <button type="submit">Login</button>
                 <Link to="/register">Don't have account? Register</Link>
             </form>
