@@ -56,35 +56,41 @@ function Register() {
   }
 
   return (
-    <div>
+    <div className="auth-page">
       <form onSubmit={handleSubmit}>
-        <label>
-          Name:
+        <div className="input-group">
+          <label htmlFor="name">Name:</label>
           <input
-            type="text"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
+              type="name"
+              id="name"
+              placeholder="Enter your name"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+              required
           />
-        </label>
-        <br />
-        <label>
-          Email:
+        </div>
+        <div className="input-group">
+          <label htmlFor="email">Email:</label>
           <input
-            type="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
+              type="email"
+              id="email"
+              placeholder="Enter your email address"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              required
           />
-        </label>
-        <br />
-        <label>
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
-        <br />
+        </div>
+        <div className="input-group">
+            <label htmlFor="password">Password:</label>
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                required
+            />
+        </div>
         <button type="submit">Register</button>
         <Link to="/login">Already have account? Login</Link>
       </form>
