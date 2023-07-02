@@ -22,7 +22,7 @@ body {
 }
 
 .navbar {
-  padding: 16px 16px;
+  padding: 16px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -39,6 +39,7 @@ body {
 .navbar h2 {
   font-size: 18px;
   color: #323232;
+  min-width: max-content;
 }
 
 .navbar h2 a {
@@ -50,6 +51,15 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.navbar nav span {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+  word-break: break-all;
 }
 
 .navbar nav a {

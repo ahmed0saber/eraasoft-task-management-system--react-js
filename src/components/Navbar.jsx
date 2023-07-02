@@ -8,7 +8,7 @@ export default function Navbar() {
         <header className='navbar'>
             <h2><Link to="/">Task Management System</Link></h2>
             <nav>
-                {userContext.user.name ? <span>Hello, {userContext.user.name}!</span> : <NavLink to="/login">Log in</NavLink>}
+                {userContext.user.name ? <span>Hi, {userContext.user.name}!</span> : <NavLink to="/login">Log in</NavLink>}
             </nav>
         </header>
     )
