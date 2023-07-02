@@ -29,7 +29,9 @@ export default function AllTasks() {
                 setCurrentPage(response.data.data.current_page);
                 setLastPage(response.data.data.last_page);
             })
-            .catch((error) => console.log(error));
+            .catch(() => {
+                alert("Something went wrong, please try again.");
+            });
     };
 
     useEffect(() => {
