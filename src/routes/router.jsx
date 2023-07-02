@@ -4,7 +4,7 @@ import Profile from '../pages/Profile';
 import Login from '../pages/Login';
 import Home from '../pages/Home';
 import ErrorPage from '../pages/ErrorPage';
-import Root from './root';
+import Root from './Root';
 import Protected from "./Protected";
 
 const router = createBrowserRouter([
