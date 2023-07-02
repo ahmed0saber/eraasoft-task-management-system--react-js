@@ -33,27 +33,31 @@ export default function AddNewTask({ getTasksFromAPI }) {
     };
 
     return (
-        <div>
+        <div className='add-new-task-section'>
             <p>Fill the following fields to add a new task</p>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Title:
+            <form className='form' onSubmit={handleSubmit}>
+                <div className="input-group">
+                    <label htmlFor="title">Title:</label>
                     <input
                         type="title"
+                        id="title"
+                        placeholder="Enter task title here"
                         value={title}
                         onChange={(event) => setTitle(event.target.value)}
+                        required
                     />
-                </label>
-                <br />
-                <label>
-                    Description:
+                </div>
+                <div className="input-group">
+                    <label htmlFor="description">Description:</label>
                     <input
                         type="description"
+                        id="description"
+                        placeholder="Enter task description here"
                         value={description}
                         onChange={(event) => setDescription(event.target.value)}
+                        required
                     />
-                </label>
-                <br />
+                </div>
                 <button type="submit">Add</button>
             </form>
         </div>

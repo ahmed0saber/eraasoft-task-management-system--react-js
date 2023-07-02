@@ -3,6 +3,7 @@ import SingleTask from './SingleTask';
 import Cookies from "js-cookie";
 import axios from 'axios';
 import AddNewTask from './AddNewTask';
+import TasksPagination from './TasksPagination';
 
 export default function AllTasks() {
     const [tasks, setTasks] = useState([]);
@@ -36,23 +37,24 @@ export default function AllTasks() {
     }, [])
 
     return (
-        <div>
-            <h3>All Tasks</h3>
-            <AddNewTask getTasksFromAPI={getTasksFromAPI}/>
-            <div>
+        <div className='tasks-section'>
+            <h3>All Your Tasks</h3>
+            <AddNewTask getTasksFromAPI={getTasksFromAPI} />
+            <div className='tasks-container'>
                 {tasks.map(task => {
                     return (
                         <Fragment key={task.id}>
-                            <SingleTask task={task} getTasksFromAPI={getTasksFromAPI}/>
+                            <SingleTask task={task} getTasksFromAPI={getTasksFromAPI} />
                         </Fragment>
                     )
                 })}
             </div>
-            <div>
-                {currentPage > 1 ? <button onClick={() => getTasksFromAPI(prevPageUrl + "&")}>{currentPage - 1}</button> : <span>.</span>}
-                <span>{currentPage}</span>
-                {currentPage < lastPage ? <button onClick={() => getTasksFromAPI(nextPageUrl + "&")}>{currentPage + 1}</button> : <span>.</span>}
-            </div>
+            <TasksPagination currentPage={currentPage}
+                lastPage={lastPage}
+                prevPageUrl={prevPageUrl}
+                nextPageUrl={nextPageUrl}
+                getTasksFromAPI={getTasksFromAPI}
+            />
         </div>
     )
 }

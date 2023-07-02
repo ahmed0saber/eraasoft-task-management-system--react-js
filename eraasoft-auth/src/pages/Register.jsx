@@ -57,7 +57,7 @@ function Register() {
 
   return (
     <div className="auth-page">
-      <form onSubmit={handleSubmit}>
+      <form className="form" onSubmit={handleSubmit}>
         <div className="input-group">
           <label htmlFor="name">Name:</label>
           <input

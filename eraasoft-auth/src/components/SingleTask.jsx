@@ -51,12 +51,14 @@ export default function SingleTask({ task, getTasksFromAPI }) {
     }
 
     return (
-        <div>
-            <p ref={titleRef} contentEditable={isBeingEdited}>{task.title}</p>
-            <p ref={descriptionRef} contentEditable={isBeingEdited}>{task.description}</p>
-            {isBeingEdited ? <button onClick={() => confirmEdit(task.id)}>Confirm</button> 
-            : <button onClick={() => editTask()}>Edit</button>}
-            <button onClick={() => deleteTask(task.id)}>Delete</button>
+        <div className='single-task'>
+            <p className='task-title' ref={titleRef} contentEditable={isBeingEdited}>{task.title}</p>
+            <p className='task-description' ref={descriptionRef} contentEditable={isBeingEdited}>{task.description}</p>
+            <div className='action-btns-container'>
+                {isBeingEdited ? <button className='confirm-btn' onClick={() => confirmEdit(task.id)}>Confirm</button> 
+                : <button className='edit-btn' onClick={() => editTask()}>Edit</button>}
+                <button className='delete-btn' onClick={() => deleteTask(task.id)}>Delete</button>
+            </div>
         </div>
     )
 }

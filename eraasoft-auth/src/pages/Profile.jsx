@@ -30,10 +30,10 @@ function Profile() {
     };
 
     return (
-        <div>
+        <div className="profile-container">
             <h1>Welcome, {userContext.user.name}!</h1>
             <p>Your email is: {userContext.user.email}</p>
-            <button onClick={() => logout()}>Logout</button>
+            <button className="logout-btn" onClick={() => logout()}>Logout</button>
             <AllTasks />
         </div>
     );
