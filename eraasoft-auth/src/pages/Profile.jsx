@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import UserContext from "../context/UserContext";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from 'axios';
 import AllTasks from "../components/AllTasks";
@@ -28,10 +28,6 @@ function Profile() {
             })
             .catch((error) => console.log(error));
     };
-
-    if (!Cookies.get('access_token') || !Cookies.get('user')) {
-        return <Navigate to="/login" replace />;
-    }
 
     return (
         <div>
