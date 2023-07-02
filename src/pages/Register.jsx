@@ -43,7 +43,9 @@ function Register() {
 
           navigate("/profile");
         })
-        .catch((error) => console.log(error));
+        .catch(() => {
+          alert("Something went wrong, please try again.");
+        });
   };
 
   const handleSubmit = (event) => {

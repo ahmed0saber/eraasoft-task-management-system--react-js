@@ -21,7 +21,9 @@ export default function SingleTask({ task, getTasksFromAPI }) {
             .then(() => {
                 getTasksFromAPI()
             })
-            .catch((error) => console.log(error));
+            .catch(() => {
+                alert("Something went wrong, please try again.");
+            });
     }
 
     const editTask = () => {
@@ -47,7 +49,9 @@ export default function SingleTask({ task, getTasksFromAPI }) {
                 setIsBeingEdited(false)
                 getTasksFromAPI()
             })
-            .catch((error) => console.log(error));
+            .catch(() => {
+                alert("Something went wrong, please try again.");
+            });
     }
 
     return (

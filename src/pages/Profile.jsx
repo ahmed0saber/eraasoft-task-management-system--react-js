@@ -26,7 +26,9 @@ function Profile() {
                 userContext.setUser({});
                 navigate("/login");
             })
-            .catch((error) => console.log(error));
+            .catch(() => {
+                alert("Something went wrong, please try again.");
+            });
     };
 
     return (

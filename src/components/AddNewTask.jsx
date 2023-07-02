@@ -24,7 +24,9 @@ export default function AddNewTask({ getTasksFromAPI }) {
                 setTitle("")
                 setDescription("")
             })
-            .catch((error) => console.log(error));
+            .catch(() => {
+                alert("Something went wrong, please try again.");
+            });
     };
 
     const handleSubmit = (event) => {
