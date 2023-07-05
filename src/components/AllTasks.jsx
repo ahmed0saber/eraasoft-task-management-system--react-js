@@ -1,34 +1,21 @@
-import React, { useState, useEffect, Fragment } from 'react'
+import React, { useState, Fragment } from 'react'
 import SingleTask from './SingleTask';
-import Cookies from "js-cookie";
-import axios from 'axios';
 import AddNewTask from './AddNewTask';
 import TasksPagination from './TasksPagination';
 
 export default function AllTasks() {
-    const [tasks, setTasks] = useState([]);
-
-    const getTasksFromAPI = () => {
-        const accessToken = Cookies.get('access_token');
-
-        axios
-            .get(`https://fmb.eraasoft.com/api/tasks?token=${accessToken}`, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json',
-                },
-            })
-            .then((response) => {
-                setTasks(response.data.data.data);
-            })
-            .catch(() => {
-                alert("Something went wrong, please try again.");
-            });
-    };
-
-    useEffect(() => {
-        getTasksFromAPI()
-    }, [])
+    const [tasks, setTasks] = useState([
+        {
+            id: "111",
+            title: "Learn JavaScript",
+            description: "You need to learn JavaScript",
+        },
+        {
+            id: "222",
+            title: "Learn React.js",
+            description: "You need to learn React.js",
+        }
+    ]);
 
     return (
         <div className='tasks-section'>
