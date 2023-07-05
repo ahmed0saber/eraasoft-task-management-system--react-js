@@ -1,10 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Cookies from "js-cookie";
 import axios from 'axios';
 
 export default function SingleTask({ task, getTasksFromAPI }) {
-    const [isBeingEdited, setIsBeingEdited] = useState(false)
-
     const deleteTask = (id) => {
         const accessToken = Cookies.get('access_token');
 
@@ -24,17 +22,12 @@ export default function SingleTask({ task, getTasksFromAPI }) {
             });
     }
 
-    const editTask = () => {
-        setIsBeingEdited(true)
-    }
-
     return (
         <div className='single-task'>
-            <p className='task-title' contentEditable={isBeingEdited}>{task.title}</p>
-            <p className='task-description' contentEditable={isBeingEdited}>{task.description}</p>
+            <p className='task-title'>{task.title}</p>
+            <p className='task-description'>{task.description}</p>
             <div className='action-btns-container'>
-                {isBeingEdited ? <button className='confirm-btn'>Confirm</button> 
-                : <button className='edit-btn' onClick={() => editTask()}>Edit</button>}
+                <button className='edit-btn'>Edit</button>
                 <button className='delete-btn' onClick={() => deleteTask(task.id)}>Delete</button>
             </div>
         </div>
