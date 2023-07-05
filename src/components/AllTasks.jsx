@@ -46,7 +46,7 @@ export default function AllTasks() {
                 {tasks.map(task => {
                     return (
                         <Fragment key={task.id}>
-                            <SingleTask task={task} getTasksFromAPI={getTasksFromAPI} />
+                            <SingleTask task={task} />
                         </Fragment>
                     )
                 })}
