@@ -1,41 +1,15 @@
 import React, { useContext } from "react";
 import UserContext from "../context/UserContext";
-import { useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
-import axios from 'axios';
 import AllTasks from "../components/AllTasks";
 
 function Profile() {
     const userContext = useContext(UserContext);
-    const navigate = useNavigate();
-
-    const logout = () => {
-        const accessToken = Cookies.get('access_token');
-
-        axios
-            .post("https://fmb.eraasoft.com/api/logout", {
-                headers: {
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json',
-                    Authorization: `Bearer ${accessToken}`
-                },
-            })
-            .then(() => {
-                Cookies.remove('access_token');
-                Cookies.remove('user');
-                userContext.setUser({});
-                navigate("/login");
-            })
-            .catch(() => {
-                alert("Something went wrong, please try again.");
-            });
-    };
 
     return (
         <div className="profile-container">
             <h1>Welcome, {userContext.user.name}!</h1>
             <p>Your email is: {userContext.user.email}</p>
-            <button className="logout-btn" onClick={() => logout()}>Logout</button>
+            <button className="logout-btn">Logout</button>
             <AllTasks />
         </div>
     );
