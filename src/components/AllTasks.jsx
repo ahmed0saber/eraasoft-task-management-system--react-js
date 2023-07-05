@@ -7,16 +7,12 @@ import TasksPagination from './TasksPagination';
 
 export default function AllTasks() {
     const [tasks, setTasks] = useState([]);
-    const [nextPageUrl, setNextPageUrl] = useState("");
-    const [prevPageUrl, setPrevPageUrl] = useState("");
-    const [currentPage, setCurrentPage] = useState(1);
-    const [lastPage, setLastPage] = useState(1);
 
-    const getTasksFromAPI = (url = "https://fmb.eraasoft.com/api/tasks?") => {
+    const getTasksFromAPI = () => {
         const accessToken = Cookies.get('access_token');
 
         axios
-            .get(`${url}token=${accessToken}`, {
+            .get(`https://fmb.eraasoft.com/api/tasks?token=${accessToken}`, {
                 headers: {
                     'Content-Type': 'application/json',
                     Accept: 'application/json',
@@ -24,10 +20,6 @@ export default function AllTasks() {
             })
             .then((response) => {
                 setTasks(response.data.data.data);
-                setNextPageUrl(response.data.data.next_page_url);
-                setPrevPageUrl(response.data.data.prev_page_url);
-                setCurrentPage(response.data.data.current_page);
-                setLastPage(response.data.data.last_page);
             })
             .catch(() => {
                 alert("Something went wrong, please try again.");
@@ -51,11 +43,13 @@ export default function AllTasks() {
                     )
                 })}
             </div>
-            <TasksPagination currentPage={currentPage}
-                lastPage={lastPage}
-                prevPageUrl={prevPageUrl}
-                nextPageUrl={nextPageUrl}
-                getTasksFromAPI={getTasksFromAPI}
+            <TasksPagination currentPage={2}
+                lastPage={4}
+                prevPageUrl={"https://ahmed0saber.onrender.com"}
+                nextPageUrl={"https://ahmed0saber.onrender.com"}
+                getTasksFromAPI={() => {
+                    console.log("Hello there")
+                }}
             />
         </div>
     )

@@ -9,9 +9,9 @@ export default function TasksPagination({
 }) {
     return (
         <div className='tasks-pagination'>
-            {currentPage > 1 ? <button onClick={() => getTasksFromAPI(prevPageUrl + "&")}>{currentPage - 1}</button> : <span>..</span>}
+            {currentPage > 1 ? <button onClick={() => getTasksFromAPI(prevPageUrl)}>{currentPage - 1}</button> : <span>..</span>}
             <span>{currentPage}</span>
-            {currentPage < lastPage ? <button onClick={() => getTasksFromAPI(nextPageUrl + "&")}>{currentPage + 1}</button> : <span>..</span>}
+            {currentPage < lastPage ? <button onClick={() => getTasksFromAPI(nextPageUrl)}>{currentPage + 1}</button> : <span>..</span>}
         </div>
     )
 }
