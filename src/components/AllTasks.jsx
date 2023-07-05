@@ -41,7 +41,7 @@ export default function AllTasks() {
     return (
         <div className='tasks-section'>
             <h3>All Your Tasks</h3>
-            <AddNewTask getTasksFromAPI={getTasksFromAPI} />
+            <AddNewTask />
             <div className='tasks-container'>
                 {tasks.map(task => {
                     return (
