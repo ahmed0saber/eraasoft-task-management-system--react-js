@@ -1,11 +1,37 @@
 import React, { useState } from 'react'
+import Cookies from 'js-cookie'
+import axios from 'axios'
 
-export default function AddNewTask() {
+export default function AddNewTask({ getTasksFromAPI }) {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
 
+    const storeTask = () => {
+        const accessToken = Cookies.get("access_token")
+
+        axios.post("https://fmb.eraasoft.com/api/tasks", {
+            title,
+            description
+        }, {
+            headers: {
+                'Content-Type': 'application/json',
+                Accept: 'application/json',
+                Authorization: `Bearer ${accessToken}`
+            }
+        })
+            .then(() => {
+                setTitle("")
+                setDescription("")
+                getTasksFromAPI()
+            })
+            .catch(() => {
+                alert("Something went wrong, please try again.")
+            })
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
+        storeTask()
     };
 
     return (
